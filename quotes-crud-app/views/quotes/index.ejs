@@ -1,0 +1,16 @@
+<h1>All Quotes</h1>
+
+<% if (quotes.length === 0) { %>
+  <p>No quotes found.</p>
+<% } else { %>
+  <ul>
+    <% quotes.forEach(quote => { %>
+      <li>
+        "<%= quote.text %>" — <%= quote.author %>
+        [<a href="/quotes/<%= quote._id %>">View</a>]
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<a href="/quotes/new">➕ Add New Quote</a>

@@ -1,7 +1,5 @@
 console.log('Starting server script...');
 
-
-
 const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
@@ -53,6 +51,7 @@ app.post('/quotes', async (req, res) => {
 // SHOW – Show one quote
 app.get('/quotes/:id', async (req, res) => {
   const quote = await Quote.findById(req.params.id);
+  console.log('Quote found:', quote); // Added to help debug blank page
   res.render('quotes/show', { quote });
 });
 
@@ -74,29 +73,14 @@ app.delete('/quotes/:id', async (req, res) => {
   res.redirect('/quotes');
 });
 
+// Test route
 app.get('/test', (req, res) => {
   res.send('Express is working!');
 });
 
-
-// NEW route – Show form
-app.get('/quotes/new', (req, res) => {
-  res.render('quotes/new');
-});
-
-// CREATE route – Add new quote to DB
-app.post('/quotes', async (req, res) => {
-  await Quote.create(req.body);
-  res.redirect('/quotes');
-});
-
-
- 
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
-
-
 
 console.log('Reached end of server.js script');

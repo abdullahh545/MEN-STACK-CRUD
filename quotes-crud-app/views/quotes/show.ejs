@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quote Details</title>
+</head>
+<body>
+  <h1>Quote Details</h1>
+
+  <% if (quote) { %>
+    <blockquote>
+      "<%= quote.text %>"
+      <footer>— <%= quote.author || 'Unknown' %></footer>
+      <p><strong>Category:</strong> <%= quote.category || 'N/A' %></p>
+    </blockquote>
+
+    <a href="/quotes/<%= quote._id %>/edit">Edit</a> |
+    <form action="/quotes/<%= quote._id %>?_method=DELETE" method="POST" style="display:inline;">
+      <button type="submit">Delete</button>
+    </form>
+
+    <br><br>
+    <a href="/quotes">Back to All Quotes</a>
+  <% } else { %>
+    <p>Quote not found.</p>
+  <% } %>
+</body>
+</html>
